@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Domain.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Books", FormMethod.Get))
+{
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Publisher.PublisherName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    Authors
+                </th>
+                <th>
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @item.BookAuthors.Count
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+                    </td>
+                </tr>
+            }
+
+        </table>

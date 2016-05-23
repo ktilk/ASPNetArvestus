@@ -1,0 +1,42 @@
+﻿@model Domain.Comment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentText)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
