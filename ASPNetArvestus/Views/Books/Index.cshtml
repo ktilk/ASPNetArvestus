@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Book>
+﻿@model ASPNetArvestus.ViewModels.BookIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -11,11 +11,14 @@
 </p>
 @using (Html.BeginForm("Index", "Books", FormMethod.Get))
 {
-
     <div class="form-horizontal">
         <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" value="Search" class="btn btn-default" />
+            @Html.LabelFor(model => model.Filter, new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Filter, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="Filter" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -23,10 +26,13 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Publisher.PublisherName)
+                    @Html.DisplayNameFor(model => model.Books.FirstOrDefault().Publisher.PublisherName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Title)
+                    @Html.DisplayNameFor(model => model.Books.FirstOrDefault().Title)
+                </th>
+                <th>
+                    Number of Authors
                 </th>
                 <th>
                     Authors
@@ -35,7 +41,7 @@
                 </th>
             </tr>
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.Books)
             {
                 <tr>
                     <td>
@@ -46,6 +52,12 @@
                     </td>
                     <td>
                         @item.BookAuthors.Count
+                    </td>
+                    <td>
+                    @foreach (var authorInBook in item.BookAuthors.Where(x => x.BookId == item.BookId))
+                    {
+                        <p>@authorInBook.Author.FirstLastName </p>
+                    }
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |

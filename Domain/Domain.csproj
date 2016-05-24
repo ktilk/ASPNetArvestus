@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="AuthorBook.cs" />
+    <Compile Include="BaseEntity.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

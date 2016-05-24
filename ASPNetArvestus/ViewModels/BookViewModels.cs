@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain;
+using PagedList;
 
 namespace ASPNetArvestus.ViewModels
 {
@@ -14,5 +15,12 @@ namespace ASPNetArvestus.ViewModels
 
         public int[] AuthorIds { get; set; }
         public MultiSelectList AuthorMultiSelectList { get; set; }
+    }
+
+    public class BookIndexViewModel
+    {
+        public List<Book> Books { get; set; }
+
+        public string Filter { get; set; }
     }
 }

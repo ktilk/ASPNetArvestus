@@ -49,9 +49,15 @@ namespace ASPNetArvestus.Controllers
         }
 
         // GET: Comments/Create
-        public ActionResult Create()
+        public ActionResult CreateAuthorComment()
         {
             ViewBag.AuthorId = new SelectList(_repoAuthors.All, "AuthorId", "FirstName");
+            return View();
+        }
+
+        // GET: Comments/Create
+        public ActionResult CreateBookComment()
+        {
             ViewBag.BookId = new SelectList(_repoBooks.All, "BookId", "Title");
             return View();
         }

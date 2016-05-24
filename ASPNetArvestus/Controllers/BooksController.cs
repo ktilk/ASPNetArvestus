@@ -17,23 +17,24 @@ namespace ASPNetArvestus.Controllers
     public class BooksController : Controller
     {
         private readonly DataBaseContext _db = new DataBaseContext();
-        private readonly IEFRepository<Book> _repo;
+        private readonly IBookRepository _repo;
         private readonly IEFRepository<Publisher> _repoPublisher;
         private readonly IEFRepository<Author> _repoAuthors;
         private readonly IEFRepository<AuthorBook> _repoAuthorBooks;
 
         public BooksController()
         {
-            _repo = new EFRepository<Book>(_db);
+            _repo = new BookRepository(_db);
             _repoPublisher = new EFRepository<Publisher>(_db);
             _repoAuthors = new EFRepository<Author>(_db);
             _repoAuthorBooks = new EFRepository<AuthorBook>(_db);
         }
         // GET: Books
-        public ActionResult Index()
+        public ActionResult Index(BookIndexViewModel vm)
         {
-            var books = _repo.All;
-            return View(books);
+            var res = _repo.GetFiltered(vm.Filter);
+            vm.Books = res;
+            return View(vm);
         }
 
         // GET: Books/Details/5
