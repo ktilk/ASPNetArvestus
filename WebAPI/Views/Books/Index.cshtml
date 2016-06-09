@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-app="booksapp" ng-controller="booksController as bc">
+    <h2>Books</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Book title</th>
+            <th>Publisher</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="book in books">
+            <td>{{book.bookId}}</td>
+            <td>{{book.bookTitle}}</td>
+            <td>{{book.publisherDTO.publisherName}}</td>
+            <td><a ng-click="edit(book)" class="btn btn-default" href="#" role="button">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="form-group">
+        <label for="firstname">Book title: </label>
+        <input type="text" ng-model="selectedBook.bookTitle" class="form-control" id="firstname">
+    </div>
+
+    <div>
+        <a ng-click="createOrEdit(selectedBook)" class="btn btn-default" href="#" role="button">Add or update</a>
+    </div>
+</div>
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/App/app.js"></script>
+<script src="~/App/Controllers/booksController.js"></script>
+<script src="~/App/Services/booksService.js"></script>
+
